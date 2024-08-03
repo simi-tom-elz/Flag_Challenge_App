@@ -26,16 +26,16 @@ import java.io.IOException
 
 class QuestionsActivity : AppCompatActivity() {
 
-    private lateinit var questionNumber: TextView
+    lateinit var questionNumber: TextView
     private lateinit var timerText: TextView
-    private lateinit var tvQuestion: TextView
-    private lateinit var ivImage: ImageView
+    lateinit var tvQuestion: TextView
+    lateinit var ivImage: ImageView
     private lateinit var progressBar: ProgressBar
-    private lateinit var tvProgress: TextView
-    private lateinit var btnSubmit: Button
-    private lateinit var tvAlternatives: ArrayList<TextView>
+    lateinit var tvProgress: TextView
+    lateinit var btnSubmit: Button
+    lateinit var tvAlternatives: ArrayList<TextView>
 
-    private var questionsList: ArrayList<Question> = ArrayList()
+    var questionsList: ArrayList<Question> = ArrayList()
     private var currentQuestionIndex: Int = 0
     private var isAnswerChecked: Boolean = false
     private var selectedAlternativeIndex: Int = -1
@@ -44,6 +44,7 @@ class QuestionsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTheme(R.style.Theme_AppTheme)
         setContentView(R.layout.activity_question)
         initializeUI()
         fetchQuestionsData()
@@ -102,7 +103,7 @@ class QuestionsActivity : AppCompatActivity() {
         })
     }
 
-    private fun parseJsonData(jsonString: String) {
+    fun parseJsonData(jsonString: String) {
         val jsonObject = JSONObject(jsonString)
         val questionsArray = jsonObject.getJSONArray("questions")
 
@@ -129,7 +130,7 @@ class QuestionsActivity : AppCompatActivity() {
         }
     }
 
-    private fun getFlagDrawableResource(countryCode: String): Int {
+    fun getFlagDrawableResource(countryCode: String): Int {
         return when (countryCode) {
             "NZ" -> R.drawable.new_zealand__nz
             "AW" -> R.drawable.aruba_ar
@@ -150,7 +151,7 @@ class QuestionsActivity : AppCompatActivity() {
         }
     }
 
-    private fun updateQuestion() {
+    fun updateQuestion() {
         defaultAlternativesView()
 
         tvQuestion.text = questionsList[currentQuestionIndex].questionText
