@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">FLAGS CHALLENGE</string>
+    <string name="flag_challenge">FLAGS CHALLENGE</string>
+    <string name="save">Save</string>
+    <string name="flag_challenge_will_start">"Will Start in : "</string>
+    <string name="_00_10">00:10</string>
+    <string name="will_start_in_00_20">WILL START IN </string>
+    <string name="question">Guess the Country by the Flag</string>
+    <string name="guess_the_country_by_the_flag">Guess the Country by the Flag</string>
+    <string name="schedule">SCHEDULE</string>
+    <string name="Congratulations">Congratulations</string>
+    <string name="gameOver">Game Over</string>
+    <string name="correct">Correct</string>
+    <string name="CountryName">India</string>
+    <string name="finish">Finish</string>
+    <string name="submit">Submit</string>
+    <string name="question_text">Question</string>
+    <string name="go_to_next_question">Next Question</string>
+    <string name="incorrect">Incorrect</string>
+    <string name="failed_to_load">"Failed to load "</string>
+    <string name="please_select_an_option">Please, select and move to next</string>
+
+</resources>
