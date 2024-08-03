@@ -176,12 +176,18 @@ class QuestionsActivity : AppCompatActivity() {
                 Toast.makeText(this, getString(R.string.please_select_an_option), Toast.LENGTH_SHORT).show()
             } else {
                 val currentQuestion = questionsList[currentQuestionIndex]
-                updateResultMessages(selectedAlternativeIndex, currentQuestion.correctAnswerIndex)
+                if (selectedAlternativeIndex == currentQuestion.correctAnswerIndex) {
+                    // Correct Answer
+                    answerView(tvAlternatives[selectedAlternativeIndex], R.drawable.correct_option_border_bg, true)
+                    totalScore++
+                } else {
+                    // Wrong Answer
+                    answerView(tvAlternatives[selectedAlternativeIndex], R.drawable.wrong_option_border_bg, false)
+                    answerView(tvAlternatives[currentQuestion.correctAnswerIndex], R.drawable.correct_option_border_bg, true)
+                }
 
                 isAnswerChecked = true
-                btnSubmit.text = if (currentQuestionIndex == questionsList.size - 1) getString(R.string.finish) else getString(
-                    R.string.go_to_next_question
-                )
+                btnSubmit.text = if (currentQuestionIndex == questionsList.size - 1) "FINISH" else "GO TO NEXT QUESTION"
                 selectedAlternativeIndex = -1
             }
         } else {
@@ -199,6 +205,7 @@ class QuestionsActivity : AppCompatActivity() {
             isAnswerChecked = false
         }
     }
+
 
     private fun updateResultMessages(selectedIndex: Int, correctIndex: Int) {
         tvAlternatives.forEachIndexed { index, textView ->
@@ -253,13 +260,12 @@ class QuestionsActivity : AppCompatActivity() {
         )
     }
 
+
     private fun answerView(view: TextView, drawableId: Int, isCorrect: Boolean) {
-        view.background = ContextCompat.getDrawable(
-            this@QuestionsActivity,
-            drawableId
-        )
+        view.background = ContextCompat.getDrawable(this@QuestionsActivity, drawableId)
         view.setTextColor(Color.parseColor("#FFFFFF"))
 
+        // Show result message
         val resultTextViewId = when (view.id) {
             R.id.optionOne -> R.id.optionOneResult
             R.id.optionTwo -> R.id.optionTwoResult
@@ -268,15 +274,11 @@ class QuestionsActivity : AppCompatActivity() {
             else -> return
         }
         val resultTextView = findViewById<TextView>(resultTextViewId)
-        if (isCorrect) {
-            resultTextView.text = getString(R.string.correct)
-            resultTextView.setTextColor(Color.parseColor(getString(R.string._4caf50))) // Green color for correct
-        } else {
-            resultTextView.text = getString(R.string.incorrect)
-            resultTextView.setTextColor(Color.parseColor(getString(R.string.f44336))) // Red color for incorrect
-        }
+        resultTextView.text = if (isCorrect) "Correct" else "Incorrect"
+        resultTextView.setTextColor(if (isCorrect) Color.parseColor("#4CAF50") else Color.parseColor("#F44336"))
         resultTextView.visibility = TextView.VISIBLE
     }
+
 
     private fun startQuestionTimer() {
         timer?.cancel()

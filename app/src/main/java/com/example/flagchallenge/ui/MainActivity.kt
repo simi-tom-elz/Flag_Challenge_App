@@ -73,9 +73,7 @@ class MainActivity : AppCompatActivity() ,OnClickListener{
 
         var timeDifference = scheduledTime.timeInMillis - currentTime.timeInMillis
 
-        // If the timeDifference is negative, it means the time has already passed for today
         if (timeDifference <= 0) {
-            // Schedule it for the next day
             scheduledTime.add(Calendar.DAY_OF_YEAR, 1)
             timeDifference = scheduledTime.timeInMillis - currentTime.timeInMillis
         }

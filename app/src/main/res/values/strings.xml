@@ -19,5 +19,8 @@
     <string name="incorrect">Incorrect</string>
     <string name="failed_to_load">"Failed to load "</string>
     <string name="please_select_an_option">Please, select and move to next</string>
+    <string name="congratulations">Congratulations!</string>
+    <string name="try_again">Play Again</string>
+    <string name="yourscroe">Your score is</string>
 
 </resources>
